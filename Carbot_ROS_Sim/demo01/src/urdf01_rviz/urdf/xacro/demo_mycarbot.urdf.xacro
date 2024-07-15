@@ -1,0 +1,6 @@
+<robot name = "mycarbot" xmlns:xacro = "http://wiki.ros.org/xacro" >
+<!-- the file of xacro including chassis,camera and lidar  -->
+    <xacro:include filename = "demo01_mycarbot.urdf.xacro" />
+    <xacro:include filename = "demo01_car_camera.urdf.xacro" />
+    <xacro:include filename = "demo01_car_radar.urdf.xacro" />
+</robot>

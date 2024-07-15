@@ -1,0 +1,14 @@
+<launch>
+
+    <!-- Add PointCloud axises Transform -->
+    <node  pkg = "tf2_ros" name = "static_transform_publisher" type = "static_tansform_publisher" args = "0 0 0 -1.57 0 -1.57 / bracket / bracket_depth" />
+
+    <!-- 2.boot rviz -->
+    <node  pkg = "rviz" name = "rviz" type = "rviz" args = "-d $(find urdf01_rviz)/config/show_mycarbot.rviz" />
+
+    <!-- 3. add the node of publisher about joints' states -->
+    <node  pkg = "joint_state_publisher" name = "joint_state_publisher" type = "joint_state_publisher" />
+    <!-- 4.add the node of publisher about robot states -->
+    <node  pkg = "robot_state_publisher" name = "robot_state_publisher" type = "robot_state_publisher" />
+
+</launch>

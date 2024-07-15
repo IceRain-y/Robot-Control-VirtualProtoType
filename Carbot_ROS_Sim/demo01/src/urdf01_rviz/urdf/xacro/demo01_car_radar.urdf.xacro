@@ -1,0 +1,62 @@
+<robot name = "mycarbot" xmlns:xacro = "http://wiki.ros.org/xacro" >
+
+<!-- the file of xacro including lidar  -->
+
+    <!-- 
+        param : bracket lidar
+        size : radius height
+        offset : x,y,z 
+    -->
+
+    <xacro:property name = "bracket_radius" value = "0.01" />
+    <xacro:property name = "bracket_length" value = "0.15" />
+    <xacro:property name = "lidar_radius" value = "0.03" />
+    <xacro:property name = "lidar_length" value = "0.05" />
+
+    <xacro:property name = "joint_bracket_x" value = "0" />
+    <xacro:property name = "joint_bracket_y" value = "0" />
+    <!-- z = body_height / 2 + bracket_height / 2-->
+    <xacro:property name = "joint_bracket_z" value = "${base_length / 2 + lidar_length / 2}" />
+
+    <xacro:property name = "joint_lidar_x" value = "0" />
+    <xacro:property name = "joint_lidar_y" value = "0" />
+    <!-- z = bracket_height / 2 + lidar_height / 2 -->
+    <xacro:property name = "joint_lidar_z" value = "${bracket_length / 2 + lidar_length / 2}" />
+
+    <!-- 1.bracket -->
+    <link name = "bracket">
+        <visual>
+            <geometry>
+                <cylinder radius = "${bracket_radius}" length = "${bracket_length}" />
+            </geometry>
+            <material name = "yellow"> 
+                <color rgba = "0.8 0.5 0.0 0.5" />
+            </material>
+        </visual> 
+    </link>
+
+    <joint name = "bracket2base" type = "fixed">
+        <parent link = "base_link" />
+        <child link = "bracket" />
+        <origin xyz = "${joint_bracket_x} ${joint_bracket_y} ${joint_bracket_z}" rpy = "0 0 0" />
+    </joint>
+
+    <!-- 2.lidar -->
+    <link name = "lidar">
+        <visual>
+            <geometry>
+                <cylinder radius = "${lidar_radius}" length = "${lidar_length}" />
+            </geometry>
+            <material name = "black"> 
+                <color rgba = "0 0 0 0.5" />
+            </material>
+        </visual> 
+    </link>
+
+    <joint name = "lidar2bracket" type = "fixed">
+        <parent link = "bracket" />
+        <child link = "lidar" />
+        <origin xyz = "${joint_lidar_x} ${joint_lidar_y} ${joint_lidar_z}" rpy = "0 0 0" />
+    </joint>
+
+</robot>

@@ -1,0 +1,141 @@
+<robot name = "mycarbot" xmlns:xacro = "http://wiki.ros.org/xacro" >
+
+    <xacro:property name = "footprint_radius" value = "0.001" />
+    <!-- 1. Add base_footprint-->
+    <link name = "base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="${footprint_radius}"/>
+            </geometry>
+        </visual>
+    </link>
+
+
+    <xacro:property name = "base_radius" value = "0.1" />
+    <xacro:property name = "base_length" value = "0.08" />
+    <xacro:property name = "distance2ground" value = "0.015" />
+    <xacro:property name = "base_joint_2" value = "${base_length / 2  + distance2ground}" />
+    <!-- 2.Add chassis -->
+    <!-- 
+        geometry : cylinder
+        radius : 0.1m
+        height : 0.08m
+        distance to ground : 0.015m
+     -->
+    <!-- 2.1 link -->
+    <link name = "base_link">
+        <visual>
+            <geometry>
+                <cylinder radius = "${base_radius}" length = "${base_length}" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+
+            <material name = "baselink_color">
+                <color rgba = "1.0 0.5 0.2 0.5" />
+            </material>
+        </visual>
+    </link>
+
+    <!-- 2.2 joint -->
+    <joint name = "link2footprint" type = "fixed">
+        <parent link = "base_footprint" />
+        <child link = "base_link"/>
+        <!-- set of z axis = height / 2 + distance2ground -->
+        <origin xyz = "0 0 ${base_length / 2 + distance2ground}" rpy = "0 0 0"/>
+    </joint>
+
+
+
+    <xacro:property name = "wheel_radius" value = "0.0325" />
+    <xacro:property name = "wheel_length" value = "0.015" />
+    <xacro:property name = "PI" value = "3.1415927" />
+    <xacro:property name = "base_radius" value = "0.1" />
+    <!-- Attention -->
+    <xacro:property name = "wheel_joint_z" value = "${(-1) * (base_length / 2 + distance2ground - wheel_radius)}" />
+
+    <xacro:macro name = "wheel_func" params = "wheel_name flag" >
+    <!-- 3.Add driven wheels -->
+    <!-- 
+        geometry : cylinder
+        radius : 0.035m 
+        length : 0.015m
+     -->
+     <!-- 3.1 link -->
+    <link name = "${wheel_name}_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius = "${wheel_radius}" length = "${wheel_length}" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "${PI / 2} 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0.2 0.3" />
+            </material>
+        </visual>
+    </link>
+
+
+     <!-- 3.2 joint -->
+    <joint name = "${wheel_name}2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "${wheel_name}_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "0 ${base_radius * flag} ${wheel_joint_z}" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+    </xacro:macro>
+    <xacro:wheel_func wheel_name = "left" flag = "1" />
+    <xacro:wheel_func wheel_name = "right" flag = "-1" />
+
+    <xacro:property name = "small_wheel_radius" value = "0.0075" />
+    <xacro:property name = "small_joint_x" value = "0.08" />
+    <xacro:property name = "small_joint_z" value = "${(-1)*(base_length / 2 + distance2ground - small_wheel_radius)}" />
+    
+    <xacro:macro name = "small_wheel_func" params = "small_wheel_name flag" >
+    <!-- 4.Add universal wheels  -->
+    <!-- 
+        geometry : sphere
+        radius : 0.0075m
+     -->
+     <!-- 4.1 link -->
+    <link name = "${small_wheel_name}_wheel">
+        <visual>
+            <geometry>
+                <sphere radius = "${small_wheel_radius}" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0 0.3" />
+            </material>
+        </visual>
+    </link>
+
+     <!-- 4.2 joint -->
+     <joint name = "${small_wheel_name}2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "${small_wheel_name}_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "${flag * small_joint_x} 0 ${small_joint_z}" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+    </xacro:macro>
+    <xacro:small_wheel_func small_wheel_name = "front" flag = "1" />
+    <xacro:small_wheel_func small_wheel_name = "back" flag = "-1" />
+
+</robot>

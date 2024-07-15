@@ -1,0 +1,6 @@
+<launch>
+
+    <arg name = "map" default = "nav_slam.yaml"/>
+    <node pkg = "map_server" type = "map_server" name = "map_server" args = "$(find nav_demo)/ map / $(arg map)"/>
+
+</launch>

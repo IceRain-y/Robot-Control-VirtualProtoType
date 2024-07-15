@@ -1,0 +1,13 @@
+<launch>
+    <!-- 1. load urdf file in the param sever -->
+    <param name = "robot_description" command = "$(find xacro)/xacro $(find urdf01_rviz)/urdf/xacro/demo_mycarbot.urdf.xacro" />
+    <!-- 2.boot rviz -->
+    <node  pkg = "rviz" name = "rviz" type = "rviz" args = "-d $(find urdf01_rviz)/config/show_mycarbot.rviz" />
+
+    <!-- 3. add the node of publisher about joints' states -->
+    <node  pkg = "joint_state_publisher" name = "joint_state_publisher" type = "joint_state_publisher" />
+    <!-- 4.add the node of publisher about robot states -->
+    <node  pkg = "robot_state_publisher" name = "robot_state_publisher" type = "robot_state_publisher" />
+    <!-- 5. node of robot move control  -->
+    <node  pkg = "joint_state_publisher_gui" name = "joint_state_publisher_gui" type = "joint_state_publisher_gui" />
+</launch>

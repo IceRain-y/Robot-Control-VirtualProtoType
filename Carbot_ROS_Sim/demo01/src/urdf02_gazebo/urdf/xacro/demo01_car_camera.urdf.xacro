@@ -1,0 +1,47 @@
+<robot name = "mycarbot" xmlns:xacro = "http://wiki.ros.org/xacro" >
+<!-- the file of xacro including camera  -->
+<!-- 1.param -->
+<!-- 
+    param:
+        link : thickness,width,height
+        joint : x,y,z 
+ -->
+
+<!-- 2.set link and joint -->
+<xacro:property  name = "camera_length" value = "0.02" />    <!--thickness(x)-->
+<xacro:property  name = "camera_width" value = "0.05" />    <!--thickness(y)-->
+<xacro:property  name = "camera_height" value = "0.05" />    <!--thickness(z)-->
+<xacro:property  name = "camera_mass" value = "0.01" />
+<xacro:property  name = "joint_camera_x" value = "0.08" />
+<xacro:property  name = "joint_camera_y" value = "0" />
+<xacro:property  name = "joint_camera_z" value = "${base_length / 2 + camera_height / 2}" />
+
+<link name = "camera">
+    <visual>
+        <geometry>
+            <box size = "${camera_length} ${camera_width} ${camera_height}" />
+        </geometry>
+
+        <material name = "black">
+            <color rgba = "0 0 0 0.8" />
+        </material>
+    </visual>
+    <collision>
+        <geometry>
+            <box size = "${camera_length} ${camera_width} ${camera_height}" />
+        </geometry>
+    </collision>
+    <xacro:Box_inertial_matrix m = "${camera_mass}" l = "${camera_length}" w = "${camera_width}" h = "${camera_height}"/>
+</link>
+
+<gazebo referance = "camera">
+    <material>Gazebo/Blue</material>
+</gazebo>
+
+
+<joint name = "camera2base" type = "fixed">
+    <parent link = "base_link"/>
+    <child link = "camera" />
+    <origin xyz = "${joint_camera_x} ${joint_camera_y} ${joint_camera_z}" rpy = "0 0 0" />
+</joint>    
+</robot>

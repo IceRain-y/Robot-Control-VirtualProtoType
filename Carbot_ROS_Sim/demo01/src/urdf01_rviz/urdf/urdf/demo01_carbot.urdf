@@ -1,0 +1,162 @@
+<robot name = "mycarbot">
+    <!-- 1. Add base_footprint-->
+    <link name = "base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- 2.Add chassis -->
+    <!-- 
+        geometry : cylinder
+        radius : 0.1m
+        height : 0.08m
+        distance to ground : 0.015m
+     -->
+    <!-- 2.1 link -->
+    <link name = "base_link">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.1" length = "0.08" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+
+            <material name = "baselink_color">
+                <color rgba = "1.0 0.5 0.2 0.5" />
+            </material>
+        </visual>
+    </link>
+    <!-- 2.2 joint -->
+    <joint name = "link2footprint" type = "fixed">
+        <parent link = "base_footprint" />
+        <child link = "base_link"/>
+        <!-- set of z axis = height / 2 + distance2ground -->
+        <origin xyz = "0 0 0.055" rpy = "0 0 0"/>
+    </joint>
+
+    <!-- 3.Add driven wheels -->
+    <!-- 
+        geometry : cylinder
+        radius : 0.035m 
+        length : 0.015m
+     -->
+     <!-- 3.1 link -->
+    <link name = "left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.015" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "1.5708 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0.2 0.3" />
+            </material>
+        </visual>
+    </link>
+
+    <link name = "right_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.015" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "1.5708 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0.2 0.3" />
+            </material>
+        </visual>
+    </link>
+
+     <!-- 3.2 joint -->
+    <joint name = "left2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "left_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "0 0.1 -0.0225" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+    <joint name = "right2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "right_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "0 -0.1 -0.0225" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+    <!-- 4.Add universal wheels  -->
+    <!-- 
+        geometry : sphere
+        radius : 0.0075m
+     -->
+     <!-- 4.1 link -->
+    <link name = "front_wheel">
+        <visual>
+            <geometry>
+                <sphere radius = "0.0075" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0 0.3" />
+            </material>
+        </visual>
+    </link>
+
+    <link name = "back_wheel">
+        <visual>
+            <geometry>
+                <sphere radius = "0.0075" />
+            </geometry>
+
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+
+            <material name = "wheel_color">
+                <color rgba = "0 0 0 0.3" />
+            </material>
+        </visual>
+    </link>
+     <!-- 4.2 joint -->
+     <joint name = "front2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "front_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "0.08 0 -0.0475" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+    <joint name = "back2link" type = "continuous">
+        <parent link = "base_link" />
+        <child link = "back_wheel"/>
+        <!-- 
+            x = 0 
+            y = radius
+            z = height / 2 + distance2ground - radius 
+
+         -->
+        <origin xyz = "-0.08 0 -0.0475" rpy = "0 0 0"/>
+        <axis xyz = "0 1 0" />
+    </joint>
+
+</robot>
