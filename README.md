@@ -12,7 +12,7 @@ This repository mainly comprises various types of robot mechanical configuration
   设计了基于动力学模型的多种控制算法，重点研究自抗扰控制器及其拓展的滑模自抗扰控制器的设计，使机器人能够以较高的精度沿着预设的期望轨迹进行运动，并取得较为良好的控制效果。
 3. Particle swarm optimization algorithm is adopted to optimize parameters of active disturbance rejection controller and sliding mode active disturbance rejection controller, simplify the process of parameter adjustment and improve the control effect.
 The simulation results show the virtual prototype can accurately reflect the dynamic characteristics of the parallel robot with suspension cables, and the adopted control algorithm can achieve a better result of trajectory tracking control under elastic deformation of suspension cables and action of external uncertain disturbance, while maintaining good stability, fast response speed and high accuracy. The above work will promote the practical application of the cable-suspended parallel robot.  
-    采用粒子群算法对自抗扰控制器及滑模自抗扰控制器进行参数优化，简化其参数调节的过程，改善控制效果。  仿真实验结果表明，本文设计搭建的虚拟样机能够较为准确地反映该悬索并联机器人的动力学特性，采用的控制算法能够较好地实现在悬索弹性形变以及外部不确定扰动作用下的轨迹追踪控制，同时能够保持较好的稳定性，较快的响应速度以及较高的准确性。以上工作对悬索并联机器人的实际应用具有推动作用。
-   The procdures of VritualType design are as follows:
-   悬索机器人的设计虚拟样机设计文档如下所示：  
+    采用粒子群算法对自抗扰控制器及滑模自抗扰控制器进行参数优化，简化其参数调节的过程，改善控制效果。  仿真实验结果表明，本文设计搭建的虚拟样机能够较为准确地反映该悬索并联机器人的动力学特性，采用的控制算法能够较好地实现在悬索弹性形变以及外部不确定扰动作用下的轨迹追踪控制，同时能够保持较好的稳定性，较快的响应速度以及较高的准确性。以上工作对悬索并联机器人的实际应用具有推动作用。  
+   The procdures of VritualType design are as follows:  
+   悬索机器人的设计虚拟样机设计文档如下所示：    
 https://github.com/IceRain-y/Robot-Control-VirtualProtoType/blob/main/ADRC_Control_4DOF_CDPR/%E8%99%9A%E6%8B%9F%E6%A0%B7%E6%9C%BA%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C.docx
