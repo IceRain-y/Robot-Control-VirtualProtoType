@@ -11,4 +11,12 @@ The simulation results show that the virtual prototype designed and built in thi
 
    The procdures of VritualType design are as follows:  
    悬索机器人的设计虚拟样机设计文档如下所示：    
-https://github.com/IceRain-y/Robot-Control-VirtualProtoType/blob/main/ADRC_Control_4DOF_CDPR/%E8%99%9A%E6%8B%9F%E6%A0%B7%E6%9C%BA%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C.docx
+https://github.com/IceRain-y/Robot-Control-VirtualProtoType/blob/main/ADRC_Control_4DOF_CDPR/%E8%99%9A%E6%8B%9F%E6%A0%B7%E6%9C%BA%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C.docx  
+## Blue_ROV_9DOF_SMC  
+Underwater robots play a vital role in the exploration and development of underwater resources. The unstructured characteristics of the underwater environment, such as wind, waves, ocean currents, and other factors, make it a complex system that is nonlinear, highly coupled, redundant, and time-varying, which greatly increases the difficulty of modeling and motion control.  
+在水下资源的勘探与开发的过程中，水下机器人发挥着至关重要的作用。水下环境的非结构化特征，如风力、海浪和洋流等因素，使其成为一个非线性、高度耦合、具有冗余性和时变性的复杂系统，这大大增加了其建模与运动控制的难度。  
+This work mainly focuses on the establishment and design of the multi-body dynamics model and advanced control strategy for the Underwater Vehicle-Manipulator System (UVMS) equipped with robotic arms. Solidworks and MATLAB software are used in combination to simulate and design virtual prototype models for visualization debugging and simulation. Control strategies are also designed for the underwater robotic arms to improve their trajectory tracking performance. The specific contents are as follows:  
+本内容主要对装备机械臂的水下机器人-机械臂系统(Underwater VehicleManipulator System，简称 UVMS)的多体动力学模型及先进控制策略进行建立和设计使用Solidworks与MATLAB软件联合仿真设计虚拟样机模型，进行可视化调试和仿真，并设计针对水下机械臂的控制策略，以提升机械臂的轨迹跟踪性能。 具体内容如下：
+Firstly, the 9-degree-of-freedom (DOF) overall dynamic equation of UVMS is established. Then, based on the UVMS dynamic equation, a virtual prototype model is designed, and the simulation results are compared with the model established in Mathematica software to verify the correctness of the simulation results. Finally, the motion control of the underwater robotic arm is designed. PD and sliding mode controllers are designed based on trajectory tracking. Through analysis and comparison of simulation results, it is found that the sliding mode controller exhibits better performance in achieving trajectory tracking of underwater robotic arms.  
+首先建立UVMS的9自由度UVMS整体动力学方程。 之后基于UVMS动力学方程设计虚拟样机模型，并将仿真结果与Mathematica软件中所建立模型进行对比，验证仿真结果的正确性。 最后针对水下机械臂运动控制进行设计，基于轨迹跟踪设计了 PD和滑模控制器，通过仿真结果分析对比发现，滑模控制器在实现水下机械臂轨迹跟踪方面展现出更优的性能。  
+
